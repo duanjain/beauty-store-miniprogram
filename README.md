@@ -255,4 +255,4 @@ git rm --cached <file>
 
 ## 开源许可
 
-MIT License © 2024 Beauty Store Mini Program Contributors
+MIT License © 2024 王嘉卫
