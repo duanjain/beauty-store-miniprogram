@@ -1,0 +1,502 @@
+/* 容器样式 */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 顶部导航栏样式 - 与其他管理页面保持一致 */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 24rpx rgba(102, 126, 234, 0.4);
+  padding: 12rpx;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 16rpx;
+  border-radius: 12rpx;
+  transition: all 0.3s ease;
+  position: relative;
+  background: transparent;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2rpx);
+}
+
+.nav-item.active {
+  background: white;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+.nav-icon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* 默认（未激活）状态下的文字颜色 */
+.nav-item:not(.active) .nav-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 激活状态下的文字颜色 */
+.nav-item.active .nav-text {
+  color: #667eea;
+}
+
+/* 筛选和搜索区域样式 */
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.filter-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.filter-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15rpx 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.3);
+}
+
+.search-section {
+  display: flex;
+  background-color: white;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.search-section input {
+  flex: 1;
+  height: 92rpx;
+  border: none;
+  padding: 0 32rpx;
+  font-size: 30rpx;
+  background-color: transparent;
+  outline: none;
+}
+
+.search-bar {
+  display: flex;
+  margin-bottom: 30rpx;
+  padding: 0;
+  background-color: white;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.search-bar input {
+  flex: 1;
+  height: 92rpx;
+  border: none;
+  border-radius: 16rpx 0 0 16rpx;
+  padding: 0 32rpx;
+  font-size: 30rpx;
+  margin-right: 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.search-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 0 16rpx 16rpx 0;
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 0 48rpx;
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* 预约列表样式 - 与服务管理列表保持一致 */
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 预约项卡片样式 - 与服务管理卡片保持一致 */
+.appointment-item {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 状态标签样式 */
+.simple-status {
+  padding: 8rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 16rpx;
+  display: inline-block;
+}
+
+.status-pending {
+  background-color: #fff3e0;
+  color: #ff5722;
+}
+
+.status-paid {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.status-confirmed {
+  background-color: #e3f2fd;
+  color: #03a9f4;
+}
+
+.status-completed {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.status-cancelled {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+/* 预约头部 */
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.service-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.service-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 44rpx;
+}
+
+/* 预约元信息样式 */
+.appointment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+/* 状态样式 - 与其他管理页面保持一致 */
+.status-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.status {
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 12rpx 20rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 直接显示的简单订单状态样式 */
+.simple-status {
+  font-size: 36rpx; /* 大字体 */
+  font-weight: bold;
+  padding: 15rpx;
+  text-align: center;
+  border-radius: 12rpx 12rpx 0 0;
+  margin: -20rpx -20rpx 15rpx -20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  border-bottom: 3rpx solid rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+/* 待确认状态 - 橙色系 */
+.status-pending {
+  color: #ff5722; /* 更鲜艳的橙色 */
+  background-color: #fff3e0;
+  border-color: #ff9800;
+}
+
+/* 已确认状态 - 蓝色系 */
+.status-confirmed {
+  color: #03a9f4; /* 更鲜艳的蓝色 */
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+/* 已完成状态 - 绿色系 */
+.status-completed {
+  color: #4caf50; /* 鲜艳的绿色 */
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+}
+
+/* 已取消状态 - 红色系 */
+.status-cancelled {
+  color: #f44336; /* 鲜艳的红色 */
+  background-color: #ffebee;
+  border-color: #f44336;
+}
+
+/* 预约详细信息样式 */
+.appointment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.detail-label {
+  width: 120rpx;
+  color: #666;
+  font-weight: 500;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+  word-break: break-all;
+}
+
+/* 按钮样式 - 与服务管理页面保持一致 */
+.service-actions {
+  display: flex;
+  gap: 15rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #e0e0e0;
+  flex-wrap: wrap;
+}
+
+.service-actions button {
+  flex: 1;
+  min-width: 150rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  padding: 16rpx;
+}
+
+.view-btn {
+  background-color: #3a7bd5;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #007aff;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+/* 恢复预约按钮样式 */
+.recovery-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* 客户端样式 */
+/* 页面标题 */
+.page-header {
+  padding: 30rpx 40rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e0e0e0;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* 服务列表样式 */
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 服务项样式 */
+.service-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.service-item:active {
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+/* 服务图片 */
+.service-image {
+  width: 200rpx;
+  height: 200rpx;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.service-image image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 服务信息 */
+.service-info {
+  flex: 1;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 服务描述 */
+.service-description {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 服务元信息 */
+.service-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 服务价格 */
+.service-price {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ff6b81;
+}
+
+/* 服务时长 */
+.service-duration {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 空状态样式 - 与服务管理页面保持一致 */
+.empty-state {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 加载更多样式 - 与服务管理页面保持一致 */
+.load-more {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #007aff;
+  font-size: 28rpx;
+  cursor: pointer;
+}
+
+/* 加载中样式 - 与服务管理页面保持一致 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.loading::after {
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #007aff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

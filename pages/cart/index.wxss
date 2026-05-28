@@ -1,0 +1,249 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 购物车列表 */
+.cart-list {
+  flex: 1;
+  padding: 20rpx;
+  overflow-y: auto;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom)); /* 为底部结算栏留出空间 */
+}
+
+/* 购物车商品项 */
+.cart-item {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* 商品信息区域 */
+.item-info {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0; /* 必须加上这个，防止flex子项撑开父容器 */
+  overflow: hidden; /* 保持此属性以防止页面被撑开（解决左右滑动） */
+}
+
+/* 勾选框 */
+.item-checkbox {
+  margin-right: 20rpx;
+  transform: scale(1.2);
+  flex-shrink: 0;
+}
+
+/* 商品图片 */
+.item-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+/* 商品详情 */
+.item-details {
+  flex: 1;
+  height: 160rpx; /* 保持高度与图片一致 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0; /* 关键：防止Flex子项被过度压缩或撑开，解决内容消失问题 */
+  /* overflow: hidden; 移除此属性，由内部元素控制溢出 */
+}
+
+/* 商品名称 */
+.item-name {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+  /* 简化截断逻辑，确保显示 */
+  display: block; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; /* 确保占满容器宽度 */
+}
+
+/* 商品价格 */
+.item-price {
+  font-size: 32rpx;
+  color: #ff6b81;
+  font-weight: bold;
+  margin: 10rpx 0;
+  flex-shrink: 0; /* 防止价格被压缩 */
+}
+
+/* 数量控制 */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+  flex-shrink: 0; /* 防止整个控件被压缩 */
+}
+
+.quantity-control button {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  padding: 0;
+  margin: 0;
+  border: 1rpx solid #ddd;
+  background-color: #fff;
+  border-radius: 50%;
+  flex-shrink: 0; /* 关键：防止按钮被压缩 */
+}
+
+.quantity-input {
+  width: 80rpx; /* 稍微减小宽度以适应小屏 */
+  height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border: 1rpx solid #ddd;
+  margin: 0 10rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0; /* 关键：防止输入框被压缩 */
+}
+
+/* 删除按钮样式已移除 */
+
+/* 空购物车状态 */
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.empty-image {
+  width: 300rpx;
+  height: 300rpx;
+  margin-bottom: 40rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.btn-go-shopping {
+  width: 240rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 顶部操作栏 */
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 20rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+/* 左上角批量删除按钮 */
+.btn-delete-all-top {
+  width: 160rpx !important; /* 强制设置宽度 */
+  height: 60rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border-radius: 30rpx; /* 增加圆角，更美观 */
+  font-weight: normal; /* 避免加粗 */
+}
+
+.btn-delete-all-top:disabled {
+  opacity: 0.4;
+}
+
+/* 底部结算栏 */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15rpx 20rpx;
+  border-top: 1rpx solid #eee;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-sizing: content-box;
+  height: 70rpx; /* 100rpx(原高度) - 30rpx(上下内边距) */
+  max-width: 100%;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  padding-bottom: calc(15rpx + env(safe-area-inset-bottom));
+}
+
+/* 全选区域 */
+.select-all {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.select-all-checkbox {
+  margin-right: 8rpx;
+  transform: scale(1.1);
+}
+
+.select-all-text {
+  font-size: 24rpx;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* 总计信息 */
+.total-price {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.price-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-right: 5rpx;
+}
+
+.price-value {
+  font-size: 32rpx;
+  color: #ff6b81;
+  font-weight: bold;
+}
+
+/* 结算按钮 */
+.btn-settle {
+  width: 120rpx;
+  height: 60rpx;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

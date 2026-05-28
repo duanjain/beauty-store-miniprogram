@@ -1,0 +1,32 @@
+var toFix = function (value) {
+  if (value === undefined || value === null) return '0'
+  var num = parseFloat(value)
+  if (isNaN(num)) return '0'
+  return parseFloat(num.toFixed(2))
+}
+
+var formatDate = function (date) {
+  if (!date) return ''
+  var d = getDate(date)
+  if (!d) return ''
+  
+  var year = d.getFullYear()
+  var month = (d.getMonth() + 1).toString()
+  if (month.length === 1) month = '0' + month
+  
+  var day = d.getDate().toString()
+  if (day.length === 1) day = '0' + day
+  
+  var hours = d.getHours().toString()
+  if (hours.length === 1) hours = '0' + hours
+  
+  var minutes = d.getMinutes().toString()
+  if (minutes.length === 1) minutes = '0' + minutes
+  
+  return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes
+}
+
+module.exports = {
+  toFix: toFix,
+  formatDate: formatDate
+}

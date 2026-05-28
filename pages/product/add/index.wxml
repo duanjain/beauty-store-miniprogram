@@ -1,0 +1,159 @@
+<view class="container page-wrapper product-add-page">
+  <view class="form-card card">
+    <view class="section-title">商品信息</view>
+    
+    <!-- 商品图片上传 -->
+    <view class="form-item">
+      <text class="label">商品图片</text>
+      <view class="image-upload-area">
+        <block wx:for="{{product.images}}" wx:key="index">
+          <view class="image-item">
+            <image class="uploaded-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+            <view class="delete-btn" bindtap="removeImage" data-index="{{index}}">×</view>
+          </view>
+        </block>
+        <view class="upload-btn" bindtap="chooseImage" wx:if="{{product.images.length < 9}}">
+          <text class="upload-icon">+</text>
+          <text class="upload-text">添加图片</text>
+        </view>
+      </view>
+      <text class="tip-text">最多可上传9张图片</text>
+    </view>
+
+    <!-- 商品名称 -->
+    <view class="form-item">
+      <text class="label required">商品名称</text>
+      <input 
+        class="input" 
+        placeholder="请输入商品名称" 
+        placeholder-class="placeholder"
+        value="{{product.name}}"
+        bindinput="onInputChange"
+        data-field="name"
+        maxlength="50"
+      />
+    </view>
+
+    <!-- 商品价格 -->
+    <view class="form-item price-row">
+      <view class="price-item">
+        <text class="label required">售价</text>
+        <view class="price-input-group">
+          <text class="currency">¥</text>
+          <input 
+            class="price-input" 
+            type="digit" 
+            placeholder="0.00" 
+            placeholder-class="placeholder"
+            value="{{product.price}}"
+            bindinput="onInputChange"
+            data-field="price"
+          />
+        </view>
+      </view>
+      <view class="price-item">
+        <text class="label">原价</text>
+        <view class="price-input-group">
+          <text class="currency">¥</text>
+          <input 
+            class="price-input" 
+            type="digit" 
+            placeholder="0.00" 
+            placeholder-class="placeholder"
+            value="{{product.originalPrice}}"
+            bindinput="onInputChange"
+            data-field="originalPrice"
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- 库存数量 -->
+    <view class="form-item">
+      <text class="label required">库存数量</text>
+      <input 
+        class="input" 
+        type="number" 
+        placeholder="请输入库存数量" 
+        placeholder-class="placeholder"
+        value="{{product.stock}}"
+        bindinput="onInputChange"
+        data-field="stock"
+      />
+    </view>
+
+    <!-- 商品分类 -->
+    <view class="form-item">
+      <text class="label required">商品分类 (可多选)</text>
+      <view class="picker" bindtap="openCategoryModal">
+        <text class="picker-text">{{selectedCategoriesText || '请选择分类'}}</text>
+        <text class="picker-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 商品描述 -->
+    <view class="form-item">
+      <text class="label">商品描述</text>
+      <textarea 
+        class="textarea" 
+        placeholder="请输入商品描述信息" 
+        placeholder-class="placeholder"
+        value="{{product.description}}"
+        bindinput="onInputChange"
+        data-field="description"
+        maxlength="500"
+        auto-height
+      />
+      <text class="char-count">{{product.description.length || 0}}/500</text>
+    </view>
+
+    <!-- 商品状态 -->
+    <view class="form-item">
+      <text class="label required">上架状态</text>
+      <radio-group class="radio-group" bindchange="onInputChange" data-field="status">
+        <label class="radio-item">
+          <radio value="true" checked="{{product.status === true}}"/>
+          <text>立即上架</text>
+        </label>
+        <label class="radio-item">
+          <radio value="false" checked="{{product.status === false}}"/>
+          <text>暂不上架</text>
+        </label>
+      </radio-group>
+    </view>
+
+  </view>
+
+  <view class="submit-section">
+    <button class="btn-submit btn-primary" type="primary" bindtap="submitForm" loading="{{loading}}">
+      发布商品
+    </button>
+  </view>
+
+  <page-container 
+    show="{{showCategoryModal}}" 
+    round
+    position="bottom" 
+    custom-style="height: 60vh; background-color: #fff;" 
+    bind:clickoverlay="closeCategoryModal"
+  >
+    <view class="category-modal">
+      <view class="modal-header">
+        <text class="modal-title">选择分类</text>
+        <text class="modal-confirm" bindtap="confirmCategorySelection">确定</text>
+      </view>
+      <scroll-view scroll-y class="modal-content">
+        <checkbox-group bindchange="onCategoryCheckboxChange">
+          <view class="category-list">
+            <block wx:for="{{categories}}" wx:key="name">
+              <label class="category-item">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}" />
+                <text>{{item.name}}</text>
+              </label>
+            </block>
+          </view>
+        </checkbox-group>
+      </scroll-view>
+    </view>
+  </page-container>
+</view>

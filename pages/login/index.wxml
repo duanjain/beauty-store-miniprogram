@@ -1,0 +1,30 @@
+<view class="login-container">
+  <!-- 背景装饰 -->
+  <view class="bg-circle circle-1"></view>
+  <view class="bg-circle circle-2"></view>
+
+  <view class="login-card">
+    <view class="header">
+      <view class="logo-box">
+        <image class="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIwIDIxdi0yYTQgNCAwIDAgMC00LTRINGE0IDQgMCAwIDAtNCA0djIiPjwvcGF0aD48Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiPjwvY2lyY2xlPjwvc3ZnPg=="></image>
+      </view>
+      <text class="title">用户登录</text>
+      <text class="subtitle">请选择登录方式</text>
+    </view>
+
+    <!-- 普通用户登录 -->
+    <view class="login-mode user-primary">
+      <view class="profile-form">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{avatarUrl || defaultAvatarUrl}}"></image>
+          <view class="avatar-tip" wx:if="{{!avatarUrl}}">点击选择头像</view>
+        </button>
+        <input type="nickname" class="nickname-input" placeholder="请输入昵称" bindinput="onNicknameChange" bindblur="onNicknameChange" value="{{nickName}}"/>
+        <input class="nickname-input" placeholder="邀请码（选填）" bindinput="onInviteCodeChange" value="{{inviteCode}}"/>
+        <button class="btn-login" bindtap="handleUserLogin" disabled="{{!nickName || !avatarUrl}}">
+           立即登录
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

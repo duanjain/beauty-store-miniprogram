@@ -1,0 +1,79 @@
+<view class="container page-wrapper address-edit-page">
+  <view class="header">
+    <text class="header-title">{{isEdit ? '编辑地址' : '添加地址'}}</text>
+    <text class="header-back" bindtap="goBack">←</text>
+  </view>
+  
+  <view class="content">
+    <view class="form card">
+      <view class="form-item">
+        <text class="form-label">收货人</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入收货人姓名" 
+          placeholder-class="placeholder" 
+          value="{{addressForm.name}}" 
+          bindinput="onInput"
+          data-field="name"
+        />
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">联系电话</text>
+        <input 
+          class="form-input" 
+          type="number" 
+          placeholder="请输入11位手机号码" 
+          placeholder-class="placeholder" 
+          value="{{addressForm.phone}}" 
+          bindinput="onInput"
+          data-field="phone"
+          maxlength="11"
+        />
+      </view>
+      
+      <!-- 地图选择 -->
+      <view class="form-item map-item">
+        <text class="form-label">选择地址</text>
+        <view class="map-container" bindtap="openMap">
+          <text class="map-placeholder" wx:if="{{!addressForm.address}}">点击选择收货地址</text>
+          <text class="map-address" wx:else>{{addressForm.province}}{{addressForm.city}}{{addressForm.district}}{{addressForm.address}}</text>
+          <text class="map-arrow">→</text>
+        </view>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">详细地址</text>
+        <textarea 
+          class="form-textarea" 
+          placeholder="请输入详细地址（如街道、门牌号等）" 
+          placeholder-class="placeholder" 
+          value="{{addressForm.detail}}" 
+          bindinput="onTextareaInput"
+          data-field="detail"
+          maxlength="100"
+        ></textarea>
+      </view>
+      
+      <view class="form-item checkbox-item">
+        <checkbox 
+          class="form-checkbox" 
+          value="isDefault" 
+          checked="{{addressForm.isDefault}}" 
+          bindtap="toggleDefault"
+        ></checkbox>
+        <text class="checkbox-label">设为默认地址</text>
+      </view>
+    </view>
+    
+    <button 
+      class="save-btn btn-primary" 
+      type="primary" 
+      bindtap="saveAddress" 
+      disabled="{{!canSave}}"
+    >
+      保存
+    </button>
+    <view class="privacy-tip">保存即表示您同意我们收集您的收货信息用于订单配送</view>
+  </view>
+</view>

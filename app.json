@@ -1,0 +1,80 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/pay/index",
+    "pages/appointment/index",
+    "pages/cart/index",
+    "pages/profile/index",
+    "pages/profile/notice/index",
+    "pages/profile/appointment/index",
+    "pages/profile/edit/index",
+    "pages/profile/phone/index",
+    "pages/profile/address/index",
+    "pages/profile/address/edit/index",
+    "pages/skin-analyze/index",
+    "pages/product/list/index",
+    "pages/product/add/index",
+    "pages/product/edit/index",
+    "pages/product/detail/index",
+    "pages/product/admin-detail/index",
+    "pages/service/list/index",
+    "pages/service/add/index",
+    "pages/service/edit/index",
+    "pages/service/detail/index",
+    "pages/order/list/index",
+    "pages/order/detail/index",
+    "pages/user/list/index",
+    "pages/user/detail/index",
+    "pages/user/points/index",
+    "pages/user/points-log/index",
+    "pages/category/list/index",
+    "pages/category/add/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "化妆品商城",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ff6b81",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-selected.png"
+      },
+      {
+        "pagePath": "pages/appointment/index",
+        "text": "预约",
+        "iconPath": "images/tabbar/calendar.png",
+        "selectedIconPath": "images/tabbar/calendar-selected.png"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "images/tabbar/cart.png",
+        "selectedIconPath": "images/tabbar/cart-selected.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/tabbar/user.png",
+        "selectedIconPath": "images/tabbar/user-selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "requiredPrivateInfos": ["getLocation", "chooseLocation"],
+  "__usePrivacyCheck__": false,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于选择收货地址"
+    }
+  }
+}

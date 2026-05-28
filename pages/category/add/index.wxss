@@ -1,0 +1,13 @@
+.container {
+  padding: 30rpx;
+}
+.form-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 20rpx 0;
+}
+input {
+  flex: 1;
+  margin-left: 20rpx;
+}

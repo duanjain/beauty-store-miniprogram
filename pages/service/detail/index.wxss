@@ -1,0 +1,185 @@
+/* 全新的页面样式 */
+.container {
+  background-color: #f0f2f5;
+  padding: 10rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: block;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.new-layout {
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+}
+
+.new-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.image-section {
+  margin-bottom: 30rpx;
+}
+
+.service-image {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 12rpx;
+  margin-bottom: 15rpx;
+  background-color: #f5f5f5;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 12rpx;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx dashed #d9d9d9;
+}
+
+.placeholder-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.info-section {
+  margin-bottom: 40rpx;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 25rpx;
+  align-items: flex-start;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #666;
+  min-width: 120rpx;
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+.info-value.price {
+  color: #ff4d4f;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.info-value.description {
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.settings-section {
+  margin-bottom: 40rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #eee;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.setting-item {
+  display: flex;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+
+.setting-label {
+  font-size: 26rpx;
+  color: #666;
+  min-width: 140rpx;
+}
+
+.setting-value {
+  font-size: 26rpx;
+  color: #333;
+  flex: 1;
+}
+
+.back-button {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+/* 预约表单样式 */
+.appointment-section {
+  margin-bottom: 40rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #eee;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 15rpx;
+  font-weight: 500;
+}
+
+.picker-value {
+  font-size: 28rpx;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 20rpx 30rpx;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+}
+
+.appointment-button {
+  background: linear-gradient(135deg, #ff6b81 0%, #ff8e53 100%);
+  color: white;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  padding: 20rpx;
+  width: 100%;
+  margin-top: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 129, 0.4);
+  transition: all 0.3s ease;
+}
+
+.appointment-button:hover {
+  transform: translateY(-2rpx);
+  box-shadow: 0 6rpx 20rpx rgba(255, 107, 129, 0.5);
+}
+
+.appointment-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 129, 0.3);
+}
+
+.appointment-button[disabled] {
+  background-color: #d9d9d9;
+  color: #fff;
+  box-shadow: none;
+  transform: none;
+  opacity: 0.6;
+}

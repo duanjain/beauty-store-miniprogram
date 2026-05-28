@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">设置联系电话</text>
+    <text class="header-back" bindtap="goBack">←</text>
+  </view>
+  
+  <view class="content">
+    <view class="form-item">
+      <text class="form-label">联系电话</text>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入11位手机号码" 
+        placeholder-class="placeholder" 
+        value="{{phone}}" 
+        bindinput="onPhoneInput"
+        maxlength="11"
+      />
+    </view>
+    
+    <button 
+      class="save-btn" 
+      type="primary" 
+      bindtap="savePhone" 
+      disabled="{{!canSave}}"
+    >
+      保存
+    </button>
+  </view>
+</view>

@@ -1,0 +1,106 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+<view class='container'>
+  <!-- 用户信息区域 -->
+  <view class='user-card'>
+    <view class='user-info'>
+      <view class='user-avatar'>
+        <image src='{{userInfo.avatarUrl || ""}}' mode='aspectFill'></image>
+      </view>
+      <view class='user-details'>
+        <text class='user-name'>{{userInfo.nickname || '点击登录'}}</text>
+        <view class='user-role-tag' wx:if="{{userInfo}}">
+          <text>{{role === 'admin' ? '管理员' : '普通会员'}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="user-stats" wx:if="{{userInfo}}">
+      <view class="stat-item" bindtap="viewPoints">
+        <text class="stat-num">{{tools.toFix(userInfo.points)}}</text>
+        <text class="stat-label">积分</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">0</text>
+        <text class="stat-label">优惠券</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">0</text>
+        <text class="stat-label">收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单状态栏 -->
+  <view class='card order-status-card'>
+    <view class='card-header' bindtap='viewOrders'>
+      <text class='card-title'>我的订单</text>
+      <view class='card-more'>
+        <text>全部订单</text>
+        <text class='arrow'>></text>
+      </view>
+    </view>
+    <view class='status-grid'>
+      <view class='status-item' bindtap='viewOrders' data-type='pending_pay'>
+        <view class='status-icon'>💳</view>
+        <text class='status-text'>待付款</text>
+      </view>
+      <view class='status-item' bindtap='viewOrders' data-type='pending_ship'>
+        <view class='status-icon'>📦</view>
+        <text class='status-text'>待发货</text>
+      </view>
+      <view class='status-item' bindtap='viewOrders' data-type='shipped'>
+        <view class='status-icon'>🚚</view>
+        <text class='status-text'>待收货</text>
+      </view>
+      <view class='status-item' bindtap='viewOrders' data-type='completed'>
+        <view class='status-icon'>✅</view>
+        <text class='status-text'>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常用功能 -->
+  <view class='card function-card'>
+    <view class='card-header'>
+      <text class='card-title'>常用功能</text>
+    </view>
+    <view class='menu-list'>
+      <view class='menu-item' bindtap='viewAppointments'>
+        <view class="menu-left">
+          <text class='menu-icon'>📅</text>
+          <text class='menu-text'>我的预约</text>
+        </view>
+        <text class='menu-arrow'>></text>
+      </view>
+      <view class='menu-item' bindtap='viewAddress'>
+        <view class="menu-left">
+          <text class='menu-icon'>📍</text>
+          <text class='menu-text'>收货地址</text>
+        </view>
+        <text class='menu-arrow'>></text>
+      </view>
+      <view class='menu-item' bindtap='viewSettings'>
+        <view class="menu-left">
+          <text class='menu-icon'>⚙️</text>
+          <text class='menu-text'>设置</text>
+        </view>
+        <text class='menu-arrow'>></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 管理员入口 -->
+  <view class='card admin-card' wx:if='{{role === "admin"}}'>
+    <view class='menu-item' bindtap='goToAdmin'>
+      <view class="menu-left">
+        <text class='menu-icon'>🔧</text>
+        <text class='menu-text'>管理后台</text>
+      </view>
+      <text class='menu-arrow'>></text>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class='logout-section' wx:if="{{userInfo}}">
+    <button class='logout-btn' bindtap='logout'>退出登录</button>
+  </view>
+</view>

@@ -1,0 +1,73 @@
+<view class='container product-detail-page'>
+  <!-- 商品图片轮播 -->
+  <swiper class='product-swiper' indicator-dots='{{true}}' autoplay='{{true}}' interval='5000' duration='500' indicator-active-color="#ff6b81">
+    <block wx:if='{{product.images && product.images.length > 0}}'>
+      <swiper-item wx:for='{{product.images}}' wx:key='index'>
+        <image class='slide-image' src='{{item}}' mode='aspectFill' binderror='onImageError' bindtap='previewImage' data-index='{{index}}'></image>
+      </swiper-item>
+    </block>
+    <block wx:else>
+      <swiper-item>
+        <view class='image-placeholder'>
+          <text class='placeholder-text'>暂无图片</text>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 商品信息 -->
+  <view class='info-card'>
+    <view class='price-row'>
+      <view class="price-wrapper">
+        <text class='currency'>¥</text>
+        <text class='price'>{{product.price || 0}}</text>
+        <text class='original-price' wx:if='{{product.originalPrice}}'>¥{{product.originalPrice}}</text>
+      </view>
+      <view class='stock-tag {{product.stock > 0 ? "" : "out"}}'>
+        {{product.stock > 0 ? '有货' : '缺货'}}
+      </view>
+    </view>
+    <view class='product-title'>{{product.name || '未设置名称'}}</view>
+    <view class='product-meta'>
+      <text>库存: {{product.stock || 0}}</text>
+      <text>销量: {{product.sales || 0}}</text>
+    </view>
+
+    <!-- 数量选择 -->
+    <view class='quantity-row'>
+      <text class='quantity-label'>购买数量</text>
+      <view class='stepper'>
+        <view class='stepper-btn minus {{quantity <= 1 ? "disabled" : ""}}' bindtap='decreaseQuantity'>-</view>
+        <input class='stepper-input' type='number' value='{{quantity}}' bindinput='onQuantityInput' />
+        <view class='stepper-btn plus {{quantity >= product.stock ? "disabled" : ""}}' bindtap='increaseQuantity'>+</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品描述 -->
+  <view class='desc-card'>
+    <view class='section-title'>商品详情</view>
+    <view class='desc-content'>
+      <text>{{product.description || '暂无详细描述'}}</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class='bottom-bar safe-area-bottom'>
+    <view class='icon-btn' bindtap='navigateBack'>
+      <view class="icon">🏠</view>
+      <text>首页</text>
+    </view>
+    <button class='icon-btn contact-btn' open-type="contact">
+      <view class="icon">🎧</view>
+      <text>客服</text>
+    </button>
+    <view class='action-btn-group'>
+      <button class='action-btn cart-btn' bindtap='addToCart'>加入购物车</button>
+      <button class='action-btn buy-btn' bindtap='buyNow'>立即购买</button>
+    </view>
+  </view>
+  
+  <!-- 底部占位，防止内容被遮挡 -->
+  <view class='bottom-placeholder safe-area-bottom'></view>
+</view>

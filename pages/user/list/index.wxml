@@ -1,0 +1,103 @@
+<wxs src="../../../utils/tools.wxs" module="tools" />
+<view class='container page-wrapper user-list-page'>
+  <!-- 顶部导航 - 与其他管理页面保持一致 -->
+  <view class='top-nav'>
+    <view class='nav-item {{activeNav === "product" ? "active" : ""}}' bindtap='switchNav' data-nav='product'>
+      <view class='nav-icon'>
+        <text>📦</text>
+      </view>
+      <text class='nav-text'>商品管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "service" ? "active" : ""}}' bindtap='switchNav' data-nav='service'>
+      <view class='nav-icon'>
+        <text>💆</text>
+      </view>
+      <text class='nav-text'>服务管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "appointment" ? "active" : ""}}' bindtap='switchNav' data-nav='appointment'>
+      <view class='nav-icon'>
+        <text>📅</text>
+      </view>
+      <text class='nav-text'>预约管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "order" ? "active" : ""}}' bindtap='switchNav' data-nav='order'>
+      <view class='nav-icon'>
+        <text>📋</text>
+      </view>
+      <text class='nav-text'>订单管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "user" ? "active" : ""}}' bindtap='switchNav' data-nav='user'>
+      <view class='nav-icon'>
+        <text>👤</text>
+      </view>
+      <text class='nav-text'>顾客管理</text>
+    </view>
+  </view>
+
+  <view class='search-section card'>
+    <input 
+      class='search-input' 
+      placeholder='搜索顾客昵称或手机号' 
+      value='{{keyword}}'
+      bindinput='onSearchInput'
+      bindconfirm='onSearch'
+    />
+    <button class='search-btn btn-primary' bindtap='onSearch'>搜索</button>
+  </view>
+
+  <view class='user-list'>
+    <view class='user-item card card-interactive' wx:for='{{userList}}' wx:key='_id' bindtap='viewUserDetail' data-user='{{item}}'>
+      <view class='user-avatar'>
+        <image src='{{item.avatarUrl || "../../../../images/avatar-placeholder.png"}}' mode='aspectFill'></image>
+      </view>
+      <view class='user-info'>
+        <view class='user-name'>{{item.nickname || '未设置昵称'}}</view>
+        <view class='user-phone'>{{item.phone || '未设置手机号'}}</view>
+        <view class='user-points'>积分: {{tools.toFix(item.points)}}</view>
+        <view class='user-register'>注册时间: {{tools.formatDate(item.registerDate)}}</view>
+      </view>
+      <view class='user-actions'>
+        <button class='points-btn btn-primary' catchtap='managePoints' data-user='{{item}}'>管理积分</button>
+      </view>
+    </view>
+  </view>
+
+  <view class='empty' wx:if='{{userList.length === 0}}'>
+    <text>暂无顾客数据</text>
+  </view>
+
+  <view class='loading' wx:if='{{loading}}'>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 积分输入对话框 -->
+  <view class='modal-mask' wx:if='{{showInputDialog}}' bindtap='cancelInput'>
+    <view class='modal-content' catchtap='stopPropagation'>
+      <view class='modal-header'>
+        <text class='modal-title'>{{inputType === "add" ? "增加积分" : "扣除积分"}}</text>
+        <text class='modal-close' bindtap='cancelInput'>×</text>
+      </view>
+      <view class='modal-body'>
+        <view class='input-info'>
+          <text class='info-label'>当前积分:</text>
+          <text class='info-value'>{{inputCurrentPoints}}</text>
+        </view>
+        <view class='input-info'>
+          <text class='info-label'>{{inputType === "add" ? "增加" : "扣除"}}积分:</text>
+          <input 
+            class='points-input' 
+            type='number' 
+            placeholder='请输入积分数量' 
+            value='{{inputValue}}' 
+            bindinput='onInputChange'
+          />
+        </view>
+        <text class='input-hint' wx:if='{{inputType === "add"}}'>每20积分相当于1元</text>
+      </view>
+      <view class='modal-footer'>
+        <button class='modal-btn btn-cancel' bindtap='cancelInput'>取消</button>
+        <button class='modal-btn btn-confirm' bindtap='confirmInput'>确认</button>
+      </view>
+    </view>
+  </view>
+</view>

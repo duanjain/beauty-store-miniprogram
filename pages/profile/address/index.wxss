@@ -1,0 +1,136 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-back {
+  position: absolute;
+  left: 30rpx;
+  font-size: 40rpx;
+  color: #333;
+}
+
+.content {
+  padding: 30rpx;
+}
+
+/* 地址列表 */
+.address-list {
+  margin-bottom: 30rpx;
+}
+
+.address-item {
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+
+.address-info {
+  margin-bottom: 20rpx;
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.address-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.address-phone {
+  font-size: 32rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.address-default {
+  font-size: 28rpx;
+  color: #e74c3c;
+  background-color: #fee;
+  padding: 5rpx 15rpx;
+  border-radius: 15rpx;
+}
+
+.address-detail {
+  font-size: 32rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.address-actions {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 2rpx solid #eee;
+  padding-top: 20rpx;
+}
+
+.action-edit, .action-delete {
+  font-size: 30rpx;
+  padding: 0 20rpx;
+}
+
+.action-edit {
+  color: #3498db;
+  border-right: 2rpx solid #eee;
+}
+
+.action-delete {
+  color: #e74c3c;
+}
+
+/* 空地址提示 */
+.empty-address {
+  text-align: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  display: block;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #999;
+}
+
+/* 添加地址按钮 */
+.add-btn {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 34rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-icon {
+  font-size: 40rpx;
+  margin-right: 10rpx;
+  line-height: 1;
+}

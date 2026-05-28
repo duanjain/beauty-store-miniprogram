@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">修改个人资料</text>
+    <text class="header-back" bindtap="goBack">←</text>
+  </view>
+  
+  <view class="content">
+    <!-- 头像设置 -->
+    <view class="profile-item avatar-item">
+      <text class="profile-label">头像</text>
+      <view class="avatar-container" bindtap="chooseAvatar">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <view class="avatar-upload">
+          <text class="upload-text">更换头像</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 昵称设置 -->
+    <view class="profile-item">
+      <text class="profile-label">昵称</text>
+      <input 
+        class="profile-input" 
+        placeholder="请输入昵称" 
+        placeholder-class="placeholder" 
+        value="{{userInfo.nickname}}" 
+        bindinput="onNicknameInput"
+        maxlength="20"
+      />
+    </view>
+    
+    <!-- 保存按钮 -->
+    <button 
+      class="save-btn" 
+      type="primary" 
+      bindtap="saveProfile" 
+      disabled="{{!canSave}}"
+    >
+      保存
+    </button>
+    <view class="privacy-tip">保存即表示您同意我们收集您的头像和昵称用于账号展示</view>
+  </view>
+</view>

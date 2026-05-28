@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="notice-card">
+    <view class="notice-header">
+      <text class="notice-title">注意事项</text>
+    </view>
+    <view class="notice-list">
+      <view class="notice-item" wx:for="{{notices}}" wx:key="id">
+        <text class="notice-index">{{indices[index]}}</text>
+        <view class="notice-content">
+          <block wx:if="{{item.hasLink}}">
+            <text>此小程序为新手所做，有诸多缺点，请将修改意见发至邮箱：</text>
+            <text class="link" bindtap="copyEmail">contact@example.com</text>
+            <text>；</text>
+          </block>
+          <text wx:else>{{item.content}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<wxs src="../../../utils/tools.wxs" module="tools" />
+<view class="container">
+  <view class="log-list">
+    <block wx:if="{{logs.length > 0}}">
+      <view class="log-item" wx:for="{{logs}}" wx:key="_id">
+        <view class="log-info">
+          <view class="log-source">{{item.sourceStr}}</view>
+          <view class="log-time">{{item.createTimeStr}}</view>
+        </view>
+        <view class="log-change {{item.change > 0 ? 'positive' : 'negative'}}">
+          {{item.change > 0 ? '+' : ''}}{{tools.toFix(item.change)}}
+        </view>
+        <view class="log-balance">余额: {{tools.toFix(item.afterPoints)}}</view>
+      </view>
+    </block>
+    <view wx:else class="empty-tip">
+      暂无积分记录
+    </view>
+    <view wx:if="{{logs.length > 0 && !hasMore}}" class="no-more">
+      没有更多记录了
+    </view>
+  </view>
+</view>

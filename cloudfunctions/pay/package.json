@@ -1,0 +1,14 @@
+{
+  "name": "pay",
+  "version": "1.0.0",
+  "description": "微信支付统一下单与退款云函数",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "xml2js": "^0.4.23"
+  }
+}
+

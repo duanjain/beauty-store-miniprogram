@@ -1,0 +1,214 @@
+<view class="container">
+  <view class="form-card">
+    <view class="section-title">服务信息</view>
+    
+    <!-- 服务图片上传 -->
+    <view class="form-item">
+      <text class="label">服务图片</text>
+      <view class="image-upload-area">
+        <block wx:for="{{service.images}}" wx:key="index">
+          <view class="image-item">
+            <image class="uploaded-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+            <view class="delete-btn" bindtap="removeImage" data-index="{{index}}">×</view>
+          </view>
+        </block>
+        <view class="upload-btn" bindtap="chooseImage" wx:if="{{service.images.length < 9}}">
+          <text class="upload-icon">+</text>
+          <text class="upload-text">添加图片</text>
+        </view>
+      </view>
+      <text class="tip-text">最多可上传9张图片</text>
+    </view>
+
+    <!-- 服务名称 -->
+    <view class="form-item">
+      <text class="label required">服务名称</text>
+      <input 
+        class="input" 
+        placeholder="请输入服务名称" 
+        placeholder-class="placeholder"
+        value="{{service.serviceName}}"
+        bindinput="onInputChange"
+        data-field="serviceName"
+        maxlength="50"
+      />
+    </view>
+
+    <!-- 服务时长 -->
+    <view class="form-item">
+      <text class="label required">服务时长</text>
+      <view class="duration-input-group">
+        <input 
+          class="duration-input" 
+          type="number" 
+          placeholder="0" 
+          placeholder-class="placeholder"
+          value="{{service.duration}}"
+          bindinput="onInputChange"
+          data-field="duration"
+        />
+        <text class="duration-unit">分钟</text>
+      </view>
+      <text class="help-text">单个服务所需的时间长度，如60分钟</text>
+    </view>
+
+    <!-- 服务价格 -->
+    <view class="form-item">
+      <text class="label required">服务价格</text>
+      <view class="price-input-group">
+        <text class="currency">¥</text>
+        <input 
+          class="price-input" 
+          type="digit" 
+          placeholder="0.00" 
+          placeholder-class="placeholder"
+          value="{{service.price}}"
+          bindinput="onInputChange"
+          data-field="price"
+        />
+      </view>
+    </view>
+
+    <!-- 服务描述 -->
+    <view class="form-item">
+      <text class="label">服务描述</text>
+      <textarea 
+        class="textarea" 
+        placeholder="请输入服务描述信息" 
+        placeholder-class="placeholder"
+        value="{{service.description}}"
+        bindinput="onInputChange"
+        data-field="description"
+        maxlength="500"
+        auto-height
+      />
+      <text class="char-count">{{service.description.length || 0}}/500</text>
+    </view>
+
+    <!-- 预约时间设置 -->
+    <view class="form-item">
+      <text class="label required">预约时间设置</text>
+      
+      <!-- 基础时间粒度 -->
+      <view class="time-setting-item">
+        <text class="sub-label">基础时间粒度</text>
+        <view class="time-granularity-input">
+          <input 
+            type="number" 
+            placeholder="30" 
+            placeholder-class="placeholder"
+            value="{{service.timeSettings.timeGranularity}}"
+            bindinput="onInputChange"
+            data-field="timeSettings.timeGranularity"
+            maxlength="3"
+          />
+          <text class="unit">分钟</text>
+        </view>
+        <text class="help-text">预约时间的最小间隔，如30分钟表示只能预约09:00、09:30等时间点</text>
+      </view>
+      
+      <!-- 每日营业时间 -->
+      <view class="time-setting-item">
+        <text class="sub-label">每日营业时间</text>
+        <view class="daily-time-picker">
+          <picker mode="time" value="{{service.timeSettings.dailyStartTime}}" bindchange="onDailyStartTimeChange" class="time-picker">
+            <view class="picker">开始时间: {{service.timeSettings.dailyStartTime}}</view>
+          </picker>
+          <picker mode="time" value="{{service.timeSettings.dailyEndTime}}" bindchange="onDailyEndTimeChange" class="time-picker">
+            <view class="picker">结束时间: {{service.timeSettings.dailyEndTime}}</view>
+          </picker>
+        </view>
+      </view>
+      
+      <!-- 每周营业日 -->
+      <view class="time-setting-item">
+        <text class="sub-label">每周营业日</text>
+        <view class="week-days">
+          <label wx:for="{{weekDays}}" wx:key="id" class="week-day-label">
+            <checkbox value="{{item.id}}" checked="{{service.timeSettings.availableDays.includes(item.id)}}" bindchange="onWeekDayChange" />
+            <text>{{item.name}}</text>
+          </label>
+        </view>
+      </view>
+      
+      <!-- 每时段容量 -->
+      <view class="time-setting-item">
+        <text class="sub-label">每时段容量</text>
+        <view class="capacity-input">
+          <input 
+            type="number" 
+            placeholder="1" 
+            placeholder-class="placeholder"
+            value="{{service.timeSettings.maxCapacity}}"
+            bindinput="onInputChange"
+            data-field="timeSettings.maxCapacity"
+            maxlength="3"
+          />
+          <text class="unit">人</text>
+        </view>
+      </view>
+      
+      <!-- 特殊日期设置 -->
+      <view class="time-setting-item">
+        <text class="sub-label">特殊日期设置</text>
+        <button type="primary" size="mini" bindtap="openSpecialDateModal" class="special-date-btn">管理特殊日期</button>
+        <view class="special-date-list">
+          <block wx:for="{{service.timeSettings.specialDates}}" wx:key="index">
+            <view class="special-date-item">
+              <text>{{item.date}}: {{item.isClosed ? '休息' : item.startTime + '-' + item.endTime}}</text>
+              <text class="delete-special-date" bindtap="removeSpecialDate" data-index="{{index}}">×</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      
+      <text class="tip-text">请设置服务的预约时间规则</text>
+    </view>
+
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button class="btn-submit" bindtap="submitForm" loading="{{loading}}">
+      发布服务
+    </button>
+  </view>
+
+  <!-- 特殊日期模态框 -->
+  <view class="modal" wx:if="{{showSpecialDateModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">添加特殊日期</text>
+        <text class="close-btn" bindtap="closeSpecialDateModal">×</text>
+      </view>
+      <view class="modal-body">
+        <!-- 选择日期 -->
+        <picker mode="date" value="{{specialDate.date}}" bindchange="onSpecialDateChange" class="date-picker">
+          <view class="picker">选择日期: {{specialDate.date}}</view>
+        </picker>
+        
+        <!-- 是否休息 -->
+        <view class="all-day-option">
+          <checkbox value="isClosed" checked="{{specialDate.isClosed}}" bindchange="onSpecialDateIsClosedChange" />休息
+        </view>
+        
+        <!-- 特殊营业时间（仅当不休息时显示） -->
+        <block wx:if="{{!specialDate.isClosed}}">
+          <view class="special-time-picker-group">
+            <picker mode="time" value="{{specialDate.startTime}}" bindchange="onSpecialDateStartTimeChange" class="time-picker">
+              <view class="picker">开始时间: {{specialDate.startTime}}</view>
+            </picker>
+            <picker mode="time" value="{{specialDate.endTime}}" bindchange="onSpecialDateEndTimeChange" class="time-picker">
+              <view class="picker">结束时间: {{specialDate.endTime}}</view>
+            </picker>
+          </view>
+        </block>
+      </view>
+      <view class="modal-footer">
+        <button type="default" bindtap="closeSpecialDateModal" class="modal-btn cancel-btn">取消</button>
+        <button type="primary" bindtap="addSpecialDate" class="modal-btn confirm-btn">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,184 @@
+page {
+  background-color: #f0f2f5;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+}
+
+.login-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* 深色科技感渐变背景 */
+  background: linear-gradient(135deg, #2b3245 0%, #1c232e 100%);
+  box-sizing: border-box; 
+}
+
+/* 背景装饰圆圈 */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.circle-1 {
+  width: 600rpx;
+  height: 600rpx;
+  background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+  top: -100rpx;
+  left: -100rpx;
+}
+
+.circle-2 {
+  width: 500rpx;
+  height: 500rpx;
+  background: linear-gradient(135deg, #96c93d, #00b09b);
+  bottom: -100rpx;
+  right: -100rpx;
+}
+
+.login-card {
+  width: 85%;
+  max-width: 650rpx;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 80rpx 50rpx;
+  border-radius: 32rpx;
+  box-shadow: 0 30rpx 60rpx rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.logo-box {
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30rpx;
+  box-shadow: 0 10rpx 20rpx rgba(58, 123, 213, 0.3);
+}
+
+.logo {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #2b3245;
+  letter-spacing: 2rpx;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #8896aa;
+}
+
+/* 新版用户资料表单 */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 160rpx !important;
+  height: 160rpx !important;
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+  background-color: #f0f2f5;
+  box-shadow: 0 8rpx 16rpx rgba(0,0,0,0.1);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-wrapper::after {
+  border: none;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatar-tip {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+  padding: 4rpx 0;
+  border-bottom-left-radius: 50%; /* approximate */
+  border-bottom-right-radius: 50%; /* approximate */
+  overflow: hidden;
+}
+
+.nickname-input {
+  width: 100%;
+  height: 90rpx;
+  background: #f7f9fc;
+  border-radius: 16rpx;
+  padding: 0 30rpx;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 50rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #e0e6ed;
+}
+
+.btn-login {
+  width: 100% !important;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+  color: #fff;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  box-shadow: 0 10rpx 20rpx rgba(58, 123, 213, 0.3);
+  padding: 0;
+  margin: 0;
+}
+
+.btn-login[disabled] {
+  background: #ccc;
+  color: #fff;
+  box-shadow: none;
+}

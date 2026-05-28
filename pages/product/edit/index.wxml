@@ -1,0 +1,130 @@
+<view class='container page-wrapper product-edit-page'>
+  <form bindsubmit='submitForm'>
+    <view class='form-group card'>
+      <text class='form-label'>商品图片</text>
+      <view class='image-uploader'>
+        <block wx:for='{{product.images}}' wx:key='*this'>
+          <view class='image-item'>
+            <image src='{{item}}' mode='aspectFill'></image>
+            <view class='image-remove' bindtap='removeImage' data-index='{{index}}'>
+              <text>×</text>
+            </view>
+            <view class='image-preview' bindtap='previewImage' data-index='{{index}}'>
+              <text>预览</text>
+            </view>
+          </view>
+        </block>
+        <view class='image-add' bindtap='chooseImage' wx:if='{{product.images.length < 9}}'>
+          <text>+</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>商品名称</text>
+      <input 
+        type='text' 
+        class='form-input' 
+        placeholder='请输入商品名称' 
+        value='{{product.name}}' 
+        data-field='name' 
+        bindinput='onInputChange'
+      />
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>商品价格</text>
+      <input 
+        type='number' 
+        class='form-input' 
+        placeholder='请输入商品价格' 
+        value='{{product.price}}' 
+        data-field='price' 
+        bindinput='onInputChange'
+      />
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>原价</text>
+      <input 
+        type='number' 
+        class='form-input' 
+        placeholder='请输入原价' 
+        value='{{product.originalPrice}}' 
+        data-field='originalPrice' 
+        bindinput='onInputChange'
+      />
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>库存</text>
+      <input 
+        type='number' 
+        class='form-input' 
+        placeholder='请输入库存' 
+        value='{{product.stock}}' 
+        data-field='stock' 
+        bindinput='onInputChange'
+      />
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>商品分类 (可多选)</text>
+      <view class='form-picker' bindtap="openCategoryModal">
+        {{selectedCategoriesText || '请选择分类'}}
+      </view>
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>商品描述</text>
+      <textarea 
+        class='form-textarea' 
+        placeholder='请输入商品描述' 
+        value='{{product.description}}' 
+        data-field='description' 
+        bindinput='onInputChange'
+      />
+    </view>
+
+    <view class='form-group card'>
+      <text class='form-label'>商品状态</text>
+      <picker bindchange='onStatusChange' value='{{product.status ? 0 : 1}}' range='{{["上架", "下架"]}}'>
+        <view class='form-picker'>
+          {{product.status ? "上架" : "下架"}}
+        </view>
+      </picker>
+    </view>
+
+    <view class='form-submit'>
+      <button class='btn-primary' formType='submit' type='primary'>保存修改</button>
+      <button class='btn-secondary' bindtap='goBack' type='default'>取消</button>
+    </view>
+  </form>
+
+  <page-container 
+    show="{{showCategoryModal}}" 
+    round
+    position="bottom" 
+    custom-style="height: 60vh; background-color: #fff;" 
+    bind:clickoverlay="closeCategoryModal"
+  >
+    <view class="category-modal">
+      <view class="modal-header">
+        <text class="modal-title">选择分类</text>
+        <text class="modal-confirm" bindtap="confirmCategorySelection">确定</text>
+      </view>
+      <scroll-view scroll-y class="modal-content">
+        <checkbox-group bindchange="onCategoryCheckboxChange">
+          <view class="category-list">
+            <block wx:for="{{categories}}" wx:key="name">
+              <label class="category-item">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}" />
+                <text>{{item.name}}</text>
+              </label>
+            </block>
+          </view>
+        </checkbox-group>
+      </scroll-view>
+    </view>
+  </page-container>
+</view>

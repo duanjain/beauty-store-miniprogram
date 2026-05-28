@@ -1,0 +1,57 @@
+.container {
+  padding: 30rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.notice-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.notice-header {
+  margin-bottom: 40rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #f0f0f0;
+  padding-bottom: 20rpx;
+}
+
+.notice-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.notice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.notice-item {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+
+.notice-index {
+  font-size: 32rpx;
+  color: #ff6b81;
+  margin-right: 16rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.notice-content {
+  font-size: 28rpx;
+  color: #666;
+  text-align: justify;
+}
+
+.link {
+  color: #4a90e2;
+  text-decoration: underline;
+  padding: 0 4rpx;
+}

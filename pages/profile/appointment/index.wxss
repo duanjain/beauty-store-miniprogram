@@ -1,0 +1,238 @@
+.container {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 20rpx;
+}
+
+/* 页面标题 */
+.page-header {
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 筛选区域 */
+.filter-section {
+  margin-bottom: 20rpx;
+}
+
+.filter-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+  background-color: #f0f0f0;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 40rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 0;
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 预约列表 */
+.appointment-list {
+  overflow: hidden;
+}
+
+/* 预约项 */
+.appointment-item {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.appointment-item:last-child {
+  border-bottom: none;
+}
+
+/* 预约状态 */
+.appointment-status {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+/* 状态标签样式 - 兼容不同的类名写法 */
+.appointment-status.pending,
+.appointment-status.status-pending {
+  background-color: #fff3e0;
+  color: #ff5722;
+}
+
+.appointment-status.paid,
+.appointment-status.status-paid {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.appointment-status.confirmed,
+.appointment-status.status-confirmed {
+  background-color: #e3f2fd;
+  color: #03a9f4;
+}
+
+.appointment-status.completed,
+.appointment-status.status-completed {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.appointment-status.cancelled,
+.appointment-status.status-cancelled {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+/* 状态文本样式 */
+.status-row {
+  margin-top: 10rpx;
+  border-top: 1rpx dashed #f0f0f0;
+  padding-top: 10rpx;
+}
+
+.status-value {
+  font-weight: bold;
+}
+
+.status-value.pending,
+.status-value.status-pending {
+  color: #ff5722;
+}
+
+.status-value.paid,
+.status-value.status-paid {
+  color: #4caf50;
+}
+
+.status-value.confirmed,
+.status-value.status-confirmed {
+  color: #03a9f4;
+}
+
+.status-value.completed,
+.status-value.status-completed {
+  color: #4caf50;
+}
+
+.status-value.cancelled,
+.status-value.status-cancelled {
+  color: #f44336;
+}
+
+/* 取消预约按钮样式 */
+.cancel-section {
+  margin-top: 15rpx;
+  text-align: center;
+}
+
+.cancel-btn {
+  width: 100%;
+  font-size: 28rpx;
+  margin: 0;
+}
+
+/* 联系管理员提示样式 */
+.contact-tip {
+  margin-top: 15rpx;
+  padding: 10rpx;
+  background-color: #fff3e0;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #ff5722;
+  line-height: 1.5;
+}
+
+/* 预约基本信息 */
+.appointment-info {
+  margin-bottom: 15rpx;
+}
+
+.service-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.appointment-date {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.appointment-time-slot {
+  display: block;
+  font-size: 28rpx;
+  color: #03a9f4;
+  font-weight: bold;
+}
+
+/* 预约详情 */
+.appointment-details {
+  background-color: #f9f9f9;
+  padding: 15rpx;
+  border-radius: 8rpx;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+  font-size: 26rpx;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  color: #666;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: bold;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 28rpx;
+  color: #666;
+  background-color: #fff;
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.load-more:active {
+  background-color: #f0f0f0;
+}

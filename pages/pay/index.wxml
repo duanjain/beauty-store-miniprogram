@@ -1,0 +1,108 @@
+<view class="container">
+  
+  <!-- 地址选择 (仅订单模式) -->
+  <block wx:if="{{type === 'order'}}">
+    <view class="section-card address-card" bindtap="chooseAddress">
+      <view class="card-left">
+        <view class="icon-location">📍</view>
+        <block wx:if="{{address}}">
+          <view class="address-info">
+            <view class="user-info">
+              <text class="name">{{address.name}}</text>
+              <text class="phone">{{address.phone}}</text>
+            </view>
+            <view class="address-detail">
+              {{address.province}}{{address.city}}{{address.district}}{{address.detail}}
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="address-placeholder">请选择收货地址</view>
+        </block>
+      </view>
+      <view class="card-right">
+        <text class="arrow">></text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 订单信息 -->
+  <view class="section-card order-card">
+    <view class="card-header">
+      <text class="title">{{type === 'order' ? '订单详情' : '预约详情'}}</text>
+    </view>
+    
+    <view class="card-content">
+      <view class="amount-box">
+        <text class="currency">¥</text>
+        <text class="amount">{{finalAmount || totalAmount}}</text>
+      </view>
+      
+      <view class="info-list">
+        <block wx:if="{{type === 'order'}}">
+          <view class="info-item">
+            <text class="label">商品总额</text>
+            <text class="value">¥{{totalAmount}}</text>
+          </view>
+           <view class="info-item" wx:for="{{items}}" wx:key="_id" wx:if="{{index < 3}}">
+            <text class="sub-value">{{item.product.name || item.name}} x{{item.quantity}}</text>
+          </view>
+          <view class="info-item" wx:if="{{items.length > 3}}">
+            <text class="sub-value">...</text>
+          </view>
+        </block>
+        
+        <block wx:if="{{type === 'appointment'}}">
+          <view class="info-item">
+            <text class="label">预约服务</text>
+            <text class="value">{{serviceName}}</text>
+          </view>
+          <view class="info-item">
+            <text class="label">预约时间</text>
+            <text class="value">{{orderInfo.timeSlot}}</text>
+          </view>
+           <view class="info-item">
+            <text class="label">联系人</text>
+            <text class="value">{{orderInfo.userName}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分抵扣 (仅订单模式) -->
+  <block wx:if="{{type === 'order'}}">
+    <view class="section-card points-card">
+      <view class="points-row">
+        <view class="points-info">
+          <text class="label">积分抵扣</text>
+          <text class="sub-label">可用 {{userPoints}} 积分</text>
+        </view>
+        <switch checked="{{usePoints}}" bindchange="togglePoints" color="#07c160" disabled="{{userPoints < 20}}" />
+      </view>
+      
+      <block wx:if="{{usePoints}}">
+        <view class="points-input-area">
+           <view class="input-row">
+             <text>使用</text>
+             <input type="number" class="points-input" value="{{inputPoints}}" bindinput="onPointsInput" />
+             <text>积分</text>
+           </view>
+           <text class="tip">20积分抵扣1元，本次最多可用{{maxUsePoints}}积分</text>
+        </view>
+        
+        <view class="points-deduction">
+          <text class="deduction-text">- ¥{{pointsDeduction}}</text>
+        </view>
+      </block>
+    </view>
+  </block>
+  
+
+  <view class="action-area">
+    <button class="btn-pay" bindtap="handlePay" loading="{{loading}}" disabled="{{loading}}">
+      微信支付 ¥{{finalAmount || totalAmount}}
+    </button>
+  </view>
+
+</view>

@@ -1,0 +1,11 @@
+{
+  "name": "getAdminUserDetail",
+  "version": "1.0.0",
+  "description": "获取用户详情（管理员端）",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

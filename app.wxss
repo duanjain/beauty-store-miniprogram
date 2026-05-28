@@ -1,0 +1,167 @@
+/**app.wxss**/
+/* CSS Variables - Design Tokens */
+page {
+  /* Brand Colors */
+  --primary-color: #ff6b81;
+  --primary-light: #ffebee;
+  --primary-dark: #e05a6d;
+  
+  /* Functional Colors */
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #ff4d4f;
+  --link-color: #1890ff;
+  
+  /* Neutral Colors */
+  --text-main: #333333;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --bg-body: #f7f8fa;
+  --bg-card: #ffffff;
+  --border-color: #eeeeee;
+  
+  /* Spacing */
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+  --spacing-xl: 40rpx;
+  
+  /* Radius */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-round: 999rpx;
+  
+  /* Shadows */
+  --shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8rpx 24rpx rgba(0, 0, 0, 0.12);
+  
+  /* Base settings */
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-body);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-body);
+  box-sizing: border-box;
+}
+
+view, text, input, button, picker, icon, image, navigator {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Common Classes */
+.page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--spacing-md);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+}
+
+.card-interactive {
+  transition: all 0.2s ease;
+}
+
+.card-interactive:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-sm);
+  background-color: #fafafa;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  border-radius: var(--radius-round) !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 129, 0.3);
+}
+
+.btn-primary:active {
+  background-color: var(--primary-dark) !important;
+}
+
+.btn-secondary {
+  background-color: #fff !important;
+  color: var(--primary-color) !important;
+  border: 2rpx solid var(--primary-color) !important;
+  border-radius: var(--radius-round) !important;
+}
+
+.btn-secondary:active {
+  background-color: var(--primary-light) !important;
+}
+
+.btn-ghost {
+  background-color: transparent !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Text Utilities */
+.text-xs { font-size: 20rpx; }
+.text-sm { font-size: 24rpx; }
+.text-md { font-size: 28rpx; }
+.text-lg { font-size: 32rpx; }
+.text-xl { font-size: 36rpx; }
+.text-bold { font-weight: 600; }
+.text-center { text-align: center; }
+
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-price { color: var(--error-color); font-weight: 600; font-family: 'DIN', sans-serif; }
+
+/* Flex Utilities */
+.flex-row { display: flex; flex-direction: row; align-items: center; }
+.flex-col { display: flex; flex-direction: column; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.align-center { align-items: center; }
+.flex-1 { flex: 1; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+
+/* Safe Area */
+.safe-area-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Empty State Global */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+  width: 100%;
+}
+
+.empty-img {
+  width: 200rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-tertiary);
+}

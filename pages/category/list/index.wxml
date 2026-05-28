@@ -1,0 +1,62 @@
+<view class="container page-wrapper category-list-page">
+  <!-- 顶部导航 -->
+  <view class='top-nav'>
+    <view class='nav-item {{activeNav === "product" ? "active" : ""}}' bindtap='switchNav' data-nav='product'>
+      <view class='nav-icon'>
+        <text>📦</text>
+      </view>
+      <text class='nav-text'>商品管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "service" ? "active" : ""}}' bindtap='switchNav' data-nav='service'>
+      <view class='nav-icon'>
+        <text>💆</text>
+      </view>
+      <text class='nav-text'>服务管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "appointment" ? "active" : ""}}' bindtap='switchNav' data-nav='appointment'>
+      <view class='nav-icon'>
+        <text>📅</text>
+      </view>
+      <text class='nav-text'>预约管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "order" ? "active" : ""}}' bindtap='switchNav' data-nav='order'>
+      <view class='nav-icon'>
+        <text>📋</text>
+      </view>
+      <text class='nav-text'>订单管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "user" ? "active" : ""}}' bindtap='switchNav' data-nav='user'>
+      <view class='nav-icon'>
+        <text>👤</text>
+      </view>
+      <text class='nav-text'>顾客管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "category" ? "active" : ""}}' bindtap='switchNav' data-nav='category'>
+      <view class='nav-icon'>
+        <text>🏷️</text>
+      </view>
+      <text class='nav-text'>分类管理</text>
+    </view>
+  </view>
+
+  <view class="header card">
+    <text class="title">分类管理</text>
+    <button class="add-btn btn-primary" size="mini" type="primary" bindtap="addCategory">新增分类</button>
+  </view>
+
+  <view class="category-list">
+    <block wx:for="{{categories}}" wx:key="_id">
+      <view class="category-item card card-interactive">
+        <text class="category-name">{{item.name}}</text>
+        <view class="actions">
+          <button class="btn-secondary" size="mini" bindtap="editCategory" data-id="{{item._id}}">编辑</button>
+          <button class="btn-danger" size="mini" type="warn" bindtap="deleteCategory" data-id="{{item._id}}">删除</button>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+  <view class="empty" wx:if="{{categories.length === 0 && !loading}}">
+    暂无分类
+  </view>
+</view>

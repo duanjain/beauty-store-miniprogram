@@ -1,0 +1,80 @@
+<view class='container product-detail-page'>
+  <!-- 商品图片轮播 -->
+  <swiper class='product-swiper' indicator-dots='{{true}}' autoplay='{{true}}' interval='5000' duration='500' indicator-active-color="#ff6b81">
+    <block wx:if='{{product.images && product.images.length > 0}}'>
+      <swiper-item wx:for='{{product.images}}' wx:key='index'>
+        <image class='slide-image' src='{{item}}' mode='aspectFill' binderror='onImageError' bindtap='previewImage' data-index='{{index}}'></image>
+      </swiper-item>
+    </block>
+    <block wx:else>
+      <swiper-item>
+        <view class='image-placeholder'>
+          <text class='placeholder-text'>暂无图片</text>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 商品信息 -->
+  <view class='info-card'>
+    <view class='price-row'>
+      <view class="price-wrapper">
+        <text class='currency'>¥</text>
+        <text class='price'>{{product.price || 0}}</text>
+        <text class='original-price' wx:if='{{product.originalPrice}}'>¥{{product.originalPrice}}</text>
+      </view>
+      <view class='stock-tag {{product.status ? "" : "off"}}'>
+        {{product.status ? '上架中' : '已下架'}}
+      </view>
+    </view>
+    <view class='product-title'>{{product.name || '未设置名称'}}</view>
+    <view class='product-meta'>
+      <text>库存: {{product.stock || 0}}</text>
+      <text>销量: {{product.sales || 0}}</text>
+      <text>浏览: {{product.views || 0}}</text>
+    </view>
+  </view>
+
+  <!-- 商品描述 -->
+  <view class='desc-card'>
+    <view class='section-title'>商品详情</view>
+    <view class='desc-content'>
+      <text>{{product.description || '暂无详细描述'}}</text>
+    </view>
+  </view>
+  
+  <!-- 创建信息 -->
+  <view class='desc-card'>
+    <view class='section-title'>系统信息</view>
+    <view class='info-row'>
+      <text class='label'>商品ID:</text>
+      <text class='value'>{{product._id}}</text>
+    </view>
+    <view class='info-row'>
+      <text class='label'>创建时间:</text>
+      <text class='value'>{{formattedCreateTime}}</text>
+    </view>
+    <view class='info-row'>
+      <text class='label'>更新时间:</text>
+      <text class='value'>{{formattedUpdateTime}}</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class='bottom-bar safe-area-bottom'>
+    <view class='icon-btn' bindtap='navigateBack'>
+      <view class="icon">🔙</view>
+      <text>返回</text>
+    </view>
+    <view class='action-btn-group'>
+      <button class='action-btn edit-btn' bindtap='navigateToEdit'>编辑商品</button>
+      <button class='action-btn status-btn {{product.status ? "off-btn" : "on-btn"}}' bindtap='toggleStatus'>
+        {{product.status ? '下架商品' : '上架商品'}}
+      </button>
+      <button class='action-btn delete-btn' bindtap='deleteProduct'>删除商品</button>
+    </view>
+  </view>
+  
+  <!-- 底部占位，防止内容被遮挡 -->
+  <view class='bottom-placeholder safe-area-bottom'></view>
+</view>

@@ -1,0 +1,12 @@
+{
+  "name": "addAppointmentPoints",
+  "version": "1.0.0",
+  "description": "为预约发放积分",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

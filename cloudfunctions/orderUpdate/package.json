@@ -1,0 +1,13 @@
+{
+  "name": "orderUpdate",
+  "version": "1.0.0",
+  "description": "更新订单状态并发放积分的云函数",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}
+

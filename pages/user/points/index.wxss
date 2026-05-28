@@ -1,0 +1,88 @@
+.points-header {
+  background: linear-gradient(135deg, #ff6b81 0%, #ff8e9e 100%);
+  color: #fff;
+  padding: 40rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.points-title {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-bottom: 20rpx;
+}
+
+.points-value {
+  font-size: 64rpx;
+  font-weight: bold;
+}
+
+.list-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 0 30rpx 20rpx;
+  color: #333;
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.log-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-source {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.log-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.log-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.log-change {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.log-balance {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+.log-change.plus {
+  color: #ff6b81;
+}
+
+.log-change.minus {
+  color: #333;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 26rpx;
+}

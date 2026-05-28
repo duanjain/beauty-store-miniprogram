@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="card">
+    <view class="title">上传面部照片</view>
+    <view class="sub">建议光线充足、正脸、无遮挡</view>
+    <view class="status" wx:if="{{stage}}">{{stage}}</view>
+    <view class="error" wx:if="{{errorText}}">{{errorText}}</view>
+
+    <view class="image-area" wx:if="{{tempImagePath}}">
+      <image class="preview" src="{{tempImagePath}}" mode="aspectFit"></image>
+    </view>
+
+    <view class="actions">
+      <button class="btn" bindtap="chooseImage" disabled="{{analyzing}}">选择照片</button>
+      <button class="btn primary" bindtap="analyze" disabled="{{!tempImagePath || analyzing}}">开始检测</button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{hasAnalyzed && !issues.length}}">
+    <view class="title">识别结果</view>
+    <view class="empty">未识别到皮肤问题</view>
+    <view class="empty-sub" wx:if="{{detectionCount}}">检测框数量：{{detectionCount}}</view>
+  </view>
+
+  <view class="card" wx:if="{{issues.length}}">
+    <view class="title">识别结果</view>
+    <view class="tags">
+      <view class="tag" wx:for="{{issues}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{hasAnalyzed && issues.length && !recommendations.length}}">
+    <view class="title">推荐护肤品</view>
+    <view class="empty">暂无匹配商品</view>
+  </view>
+
+  <view class="card" wx:if="{{recommendations.length}}">
+    <view class="title">推荐护肤品</view>
+    <view class="product" wx:for="{{recommendations}}" wx:key="_id" bindtap="openProduct" data-id="{{item._id}}">
+      <image class="product-image" src="{{item.images && item.images[0] ? item.images[0] : ''}}" mode="aspectFill"></image>
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-desc">{{item.description}}</view>
+        <view class="product-meta">
+          <text class="price">¥{{item.price}}</text>
+          <text class="score" wx:if="{{item._matchScore}}">匹配度 {{item._matchScore}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="loading-mask" wx:if="{{analyzing}}">
+    <view class="loading-card">
+      <view class="loading-title">检测中...</view>
+      <view class="loading-sub">请稍候</view>
+    </view>
+  </view>
+</view>

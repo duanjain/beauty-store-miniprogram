@@ -1,0 +1,134 @@
+<view class='container home-page'>
+  <!-- 自定义导航栏 -->
+  <view class='custom-nav' style='padding-top: {{statusBarHeight}}px; height: {{navHeight}}px;'>
+    <view class='nav-content' style='height: {{navHeight}}px;'>
+      <text class='nav-title'>化妆品商城</text>
+    </view>
+  </view>
+  
+  <!-- 占位符，防止内容被导航栏遮挡 -->
+  <view style='height: {{statusBarHeight + navHeight}}px;'></view>
+  
+  <view class="page-content">
+    <!-- 顾客端内容：搜索、Banner、分类 -->
+    <block wx:if='{{role !== "admin"}}'>
+      <!-- 搜索和筛选区域 -->
+      <view class='search-section'>
+        <view class='search-box'>
+          <icon class='search-icon' type='search' size='16' color="#999"></icon>
+          <input class='search-input' placeholder='搜索商品名称' placeholder-class="placeholder" bindinput='onSearchInput' value='{{searchKeyword}}' />
+          <view class="search-btn" bindtap='onSearch'>搜索</view>
+        </view>
+      </view>
+      
+      <!-- Banner轮播图 -->
+      <view class='banner-section'>
+        <swiper class='banner-swiper' indicator-dots='{{true}}' autoplay='{{true}}' interval='4000' duration='500' circular indicator-active-color="#ff6b81">
+          <swiper-item wx:for='{{bannerImages}}' wx:key='index'>
+            <image class='banner-image' src='{{item}}' mode='aspectFill' bindtap='previewBannerImage' data-index='{{index}}'></image>
+          </swiper-item>
+        </swiper>
+      </view>
+      
+      <!-- 分类筛选 - 横向滚动 -->
+      <view class='category-scroll-view'>
+        <scroll-view scroll-x enable-flex class="category-list">
+          <view 
+            class='category-item {{categoryIndex == index ? "active" : ""}}' 
+            wx:for='{{categoryNames}}' 
+            wx:key='name'
+            bindtap='onCategoryTap'
+            data-index='{{index}}'>
+            <text>{{item.name}}</text>
+            <view class="active-indicator" wx:if="{{categoryIndex == index}}"></view>
+          </view>
+        </scroll-view>
+      </view>
+    </block>
+
+    <!-- 商品列表 - 瀑布流式Grid -->
+    <!-- 骨架屏加载状态 -->
+    <view class='products-grid skeleton-grid' wx:if='{{loading && featuredProducts.length === 0}}'>
+      <view class='product-card skeleton-card' wx:for='{{[1,2,3,4]}}' wx:key='*this'>
+        <view class="product-img-box skeleton-rect"></view>
+        <view class='product-info'>
+          <view class='skeleton-text title-skeleton'></view>
+          <view class='skeleton-text title-skeleton short'></view>
+          <view class='product-bottom'>
+            <view class="price-box skeleton-text price-skeleton"></view>
+            <view class='add-btn skeleton-circle'></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='products-grid' wx:elif='{{role === "user" || !isLogin}}'>
+      <block wx:if='{{featuredProducts.length > 0}}'>
+        <view class='product-card' wx:for='{{featuredProducts}}' wx:key='_id' bindtap='viewProductDetail' data-id='{{item._id}}'>
+          <view class="product-img-box">
+            <image class='product-image' src='{{item.images[0] || "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300&h=300&fit=crop"}}' mode='aspectFill' lazy-load></image>
+          </view>
+          <view class='product-info'>
+            <text class='product-name'>{{item.name}}</text>
+            <view class="product-tags">
+               <text class="tag" wx:if="{{item.stock < 10}}">仅剩{{item.stock}}件</text>
+            </view>
+            <view class='product-bottom'>
+              <view class="price-box">
+                <text class='currency'>¥</text>
+                <text class='price'>{{item.price || 0}}</text>
+              </view>
+              <view class='add-btn' catchtap='addToCart' data-id='{{item._id}}'>
+                <image src="/images/tabbar/cart-selected.png" class="cart-icon"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='empty-state'>
+          <image class="empty-img" src="https://img.yzcdn.cn/vant/empty-image-default.png" mode="widthFix"></image>
+          <text class='empty-text'>暂无商品</text>
+        </view>
+      </block>
+      
+      <!-- 底部加载提示 -->
+      <view class="loading-more" wx:if="{{loading && featuredProducts.length > 0}}">
+        <view class="loading-spinner"></view>
+        <text>加载中...</text>
+      </view>
+      <view class="no-more" wx:if="{{!hasMore && featuredProducts.length > 0}}">
+        <text>没有更多了</text>
+      </view>
+    </view>
+
+    <!-- 管理员功能模块 -->
+    <view class='admin-section' wx:if='{{role === "admin" && isLogin}}'>
+      <view class='section-header'>
+        <text class='section-title'>管理工作台</text>
+      </view>
+      <view class='admin-grid'>
+        <view class='admin-item' bindtap='goToProductList'>
+          <view class='admin-icon-box color-blue'>📦</view>
+          <text class='admin-text'>商品管理</text>
+        </view>
+        <view class='admin-item' bindtap='goToServiceList'>
+          <view class='admin-icon-box color-purple'>💆</view>
+          <text class='admin-text'>服务管理</text>
+        </view>
+        <view class='admin-item' bindtap='goToOrderList'>
+          <view class='admin-icon-box color-orange'>📋</view>
+          <text class='admin-text'>订单管理</text>
+        </view>
+        <view class='admin-item' bindtap='goToUserList'>
+          <view class='admin-icon-box color-green'>👥</view>
+          <text class='admin-text'>用户管理</text>
+        </view>
+        <view class='admin-item' bindtap='goToCategoryList'>
+          <view class='admin-icon-box color-pink'>🏷️</view>
+          <text class='admin-text'>分类管理</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

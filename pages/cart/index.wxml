@@ -1,0 +1,69 @@
+<view class='container page-wrapper cart-page'>
+  <!-- 顶部操作栏 -->
+  <view class='top-bar' wx:if='{{cartItems.length > 0}}'>
+    <!-- 左上角批量删除按钮 -->
+    <button class='btn-delete-all-top btn-secondary' bindtap='deleteSelectedItems' disabled='{{selectedCount === 0}}'>
+      批量删除
+    </button>
+  </view>
+  
+  <!-- 购物车列表 -->
+  <view class='cart-list'>
+    <block wx:if='{{cartItems.length > 0}}'>
+      <view class='cart-item' wx:for='{{cartItems}}' wx:key='_id'>
+        <view class='item-info'>
+          <!-- 勾选框 -->
+          <checkbox class='item-checkbox' checked='{{item.checked}}' bindtap='toggleItem' data-id='{{item._id}}' />
+          
+          <!-- 商品图片 -->
+          <image class='item-image' src='{{item.product.images[0] || ""}}' mode='aspectFill' binderror='onImageError' data-index='{{index}}' />
+          
+          <!-- 商品信息 -->
+          <view class='item-details'>
+            <view class='item-name'>{{item.product.name}}</view>
+            <view class='item-price'>¥{{item.product.price || 0}}</view>
+            <view class='item-stock' wx:if='{{item.product.stock < 1}}'>
+              <text class='stock-text'>库存不足</text>
+            </view>
+            
+            <!-- 数量控制 -->
+            <view class='quantity-control'>
+              <button class='btn-minus' bindtap='decreaseQuantity' data-id='{{item._id}}' disabled='{{item.quantity <= 1}}'>-</button>
+              <input class='quantity-input' type='number' value='{{item.quantity}}' bindinput='onQuantityChange' data-id='{{item._id}}' min='1' max='{{item.product.stock}}' />
+              <button class='btn-plus' bindtap='increaseQuantity' data-id='{{item._id}}' disabled='{{item.quantity >= item.product.stock}}'>+</button>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 单个删除按钮已移除，改为仅支持批量删除 -->
+      </view>
+    </block>
+    
+    <!-- 空购物车状态 -->
+    <view class='empty-cart' wx:else>
+      <image class='empty-image' src='/images/empty-cart.png' mode='aspectFit' />
+      <view class='empty-text'>购物车是空的</view>
+      <button class='btn-go-shopping btn-primary' bindtap='goShopping'>去逛逛</button>
+    </view>
+  </view>
+  
+  <!-- 底部结算栏 -->
+  <view class='bottom-bar' wx:if='{{cartItems.length > 0}}'>
+    <!-- 左侧全选 -->
+    <view class='select-all'>
+      <checkbox class='select-all-checkbox' checked='{{selectAll}}' bindtap='toggleSelectAll' />
+      <text class='select-all-text'>全选</text>
+    </view>
+    
+    <!-- 中间合计 -->
+    <view class='total-price'>
+      <text class='price-label'>合计：</text>
+      <text class='price-value'>¥{{totalPrice || 0}}</text>
+    </view>
+    
+    <!-- 右侧结算按钮 -->
+    <button class='btn-settle btn-primary' bindtap='settleOrder' disabled='{{selectedCount === 0}}'>
+      结算
+    </button>
+  </view>
+</view>

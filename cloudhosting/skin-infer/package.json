@@ -1,0 +1,16 @@
+{
+  "name": "skin-infer",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "express": "^4.19.2",
+    "onnxruntime-node": "^1.18.0",
+    "sharp": "^0.32.6"
+  }
+}

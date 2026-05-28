@@ -1,0 +1,7 @@
+<view class="container page-wrapper category-add-page">
+  <view class="form-item card">
+    <text>分类名称：</text>
+    <input value="{{name}}" bindinput="onInput" placeholder="请输入分类名称"/>
+  </view>
+  <button class="btn-primary" type="primary" bindtap="save" style="margin-top: 50rpx;">保存</button>
+</view>

@@ -1,0 +1,98 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+<view class='container page-wrapper profile-page'>
+  <!-- 用户信息区域 -->
+  <view class='user-card' bindtap='editProfile'>
+    <view class='user-info-row'>
+      <view class='user-avatar'>
+        <image src='{{userInfo && userInfo.avatarUrl ? userInfo.avatarUrl : ""}}' mode='aspectFill'></image>
+      </view>
+      <view class='user-details'>
+        <view class='name-row'>
+          <text class='user-name'>{{userInfo && userInfo.nickname ? userInfo.nickname : '登录/注册'}}</text>
+          <text class='role-tag' wx:if="{{userInfo}}">{{role === 'admin' ? '管理员' : '会员'}}</text>
+        </view>
+        <text class='user-desc'>{{userInfo ? '欢迎回来，开始您的美妆之旅' : '点击登录，享受更多优惠'}}</text>
+      </view>
+      <view class='edit-icon'>✎</view>
+    </view>
+    
+    <view class='stats-row' wx:if="{{userInfo}}">
+      <view class='stat-item' catchtap='viewPointsLog'>
+        <text class='stat-num'>{{tools.toFix(userInfo.points)}}</text>
+        <text class='stat-label'>我的积分</text>
+      </view>
+      <view class='stat-item'>
+        <text class='stat-num invite-code-text'>{{userInfo.inviteCode || '未生成'}}</text>
+        <text class='stat-label'>我的邀请码</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单入口 -->
+  <view class="menu-card">
+    <view class="menu-header" bindtap='viewOrders'>
+      <text class="menu-title">我的订单</text>
+      <text class="menu-more">全部订单 ></text>
+    </view>
+    <view class="order-grid">
+      <view class="order-item" bindtap='viewOrders' data-type="1">
+        <view class="order-icon">💳</view>
+        <text>待付款</text>
+      </view>
+      <view class="order-item" bindtap='viewOrders' data-type="2">
+        <view class="order-icon">📦</view>
+        <text>待发货</text>
+      </view>
+      <view class="order-item" bindtap='viewOrders' data-type="3">
+        <view class="order-icon">🚚</view>
+        <text>待收货</text>
+      </view>
+      <view class="order-item" bindtap='viewOrders' data-type="4">
+        <view class="order-icon">💬</view>
+        <text>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class='menu-card'>
+    <view class='menu-item' bindtap='viewAppointments'>
+      <text class='menu-icon'>💆</text>
+      <text class='menu-text'>我的预约</text>
+      <text class='menu-arrow'>></text>
+    </view>
+    <view class='menu-item' bindtap='viewAddress'>
+      <text class='menu-icon'>📍</text>
+      <text class='menu-text'>收货地址</text>
+      <text class='menu-arrow'>></text>
+    </view>
+    <view class='menu-item' bindtap='viewSkinAnalyze'>
+      <text class='menu-icon'>🔎</text>
+      <text class='menu-text'>肤质检测</text>
+      <text class='menu-arrow'>></text>
+    </view>
+    <view class='menu-item' bindtap='viewPhone'>
+      <text class='menu-icon'>📞</text>
+      <text class='menu-text'>联系电话</text>
+      <text class='menu-arrow'>></text>
+    </view>
+    <view class='menu-item' bindtap='viewNotice'>
+      <text class='menu-icon'>⚠️</text>
+      <text class='menu-text'>注意事项</text>
+      <text class='menu-arrow'>></text>
+    </view>
+    <button class='menu-item contact-btn' open-type="contact">
+      <text class='menu-icon'>👨‍💼</text>
+      <view class='menu-text-column'>
+        <text class='menu-text'>联系客服</text>
+         <text class='menu-sub-text' user-select="true">客服电话：请在发布前配置</text>
+       </view>
+      <text class='menu-arrow'>></text>
+    </button>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class='logout-section' wx:if="{{isLogin}}">
+    <button class='logout-btn' bindtap='logout'>退出登录</button>
+  </view>
+</view>

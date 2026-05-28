@@ -1,0 +1,76 @@
+<view class='container page-wrapper profile-appointment-page'>
+  <!-- 页面标题 -->
+  <view class='page-header'>
+    <text class='page-title'>我的预约</text>
+  </view>
+
+  <!-- 筛选状态 -->
+  <view class='filter-section card'>
+    <picker bindchange='onStatusChange' value='{{statusIndex}}' range='{{statusOptions}}' range-key='text'>
+      <view class='filter-picker'>
+        {{currentStatusText}}
+      </view>
+    </picker>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if='{{loading && appointments.length === 0}}' class='loading'>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view wx:elif='{{appointments.length === 0}}' class='empty-state'>
+    <text>暂无预约数据</text>
+  </view>
+
+  <!-- 预约列表 -->
+  <view wx:else class='appointment-list card'>
+    <block wx:for='{{appointments}}' wx:key='_id'>
+      <view class='appointment-item'>
+        <!-- 预约状态标签 - 直接使用statusText -->
+        <view class='appointment-status {{item.status}}'>
+          {{item.statusText}}
+        </view>
+
+        <!-- 预约基本信息 -->
+        <view class='appointment-info'>
+          <text class='service-name'>{{item.serviceName}}</text>
+          <text class='appointment-date'>{{item.formattedAppointmentDate}}</text>
+          <text class='appointment-time-slot'>{{item.timeSlot}}</text>
+        </view>
+
+        <!-- 预约详情 -->
+        <view class='appointment-details'>
+          <view class='detail-row'>
+            <text class='detail-label'>联系人：</text>
+            <text class='detail-value'>{{item.userName}}</text>
+          </view>
+          <view class='detail-row'>
+            <text class='detail-label'>联系电话：</text>
+            <text class='detail-value'>{{item.phone}}</text>
+          </view>
+          <!-- 显示状态文本 - 直接使用statusText -->
+          <view class='detail-row status-row'>
+            <text class='detail-label'>预约状态：</text>
+            <text class='detail-value status-value {{item.status}}'>{{item.statusText}}</text>
+          </view>
+          
+          <!-- 取消预约按钮 - 待确认或已付款的预约才能取消 -->
+          <view class='cancel-section' wx:if='{{item.status === "pending" || item.status === "paid"}}'>
+            <button class='cancel-btn btn-danger' type='warn' bindtap='cancelAppointment' data-id='{{item._id}}'>取消预约</button>
+          </view>
+          
+          <!-- 联系管理员提示 - 已确认或已完成的预约 -->
+          <view class='contact-tip' wx:if='{{item.status === "confirmed" || item.status === "completed"}}'>
+            <text class='tip-text'>该预约已确认，如需取消请联系管理员</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class='load-more' wx:if='{{hasMore}}' bindtap='loadMore'>
+    <text>加载更多</text>
+  </view>
+</view>

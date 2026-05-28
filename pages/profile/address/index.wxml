@@ -1,0 +1,41 @@
+<view class="container page-wrapper address-page">
+  <view class="header">
+    <text class="header-title">收货地址</text>
+    <text class="header-back" bindtap="goBack">←</text>
+  </view>
+  
+  <view class="content">
+    <view class="address-list" wx:if="{{addressList.length > 0}}">
+      <view 
+        class="address-item card card-interactive" 
+        wx:for="{{addressList}}" 
+        wx:key="_id" 
+        data-index="{{index}}"
+        bindtap="selectAddress"
+      >
+        <view class="address-info">
+          <view class="address-header">
+            <text class="address-name">{{item.name}}</text>
+            <text class="address-phone">{{item.phone}}</text>
+            <text class="address-default" wx:if="{{item.isDefault}}">默认</text>
+        </view>
+        <text class="address-detail">{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.detail}}</text>
+      </view>
+      <view class="address-actions">
+          <text class="action-edit" bindtap="editAddress" data-id="{{item._id}}">编辑</text>
+          <text class="action-delete" bindtap="deleteAddress" data-id="{{item._id}}">删除</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="empty-address" wx:else>
+      <text class="empty-icon">📍</text>
+      <text class="empty-text">暂无收货地址</text>
+    </view>
+    
+    <button class="add-btn btn-primary" type="primary" bindtap="addAddress">
+      <text class="add-icon">+</text>
+      添加收货地址
+    </button>
+  </view>
+</view>

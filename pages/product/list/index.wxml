@@ -1,0 +1,82 @@
+<view class='container page-wrapper product-list-page'>
+  <!-- 顶部导航 -->
+  <view class='top-nav'>
+    <view class='nav-item {{activeNav === "product" ? "active" : ""}}' bindtap='switchNav' data-nav='product'>
+      <view class='nav-icon'>
+        <text>📦</text>
+      </view>
+      <text class='nav-text'>商品管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "service" ? "active" : ""}}' bindtap='switchNav' data-nav='service'>
+      <view class='nav-icon'>
+        <text>💆</text>
+      </view>
+      <text class='nav-text'>服务管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "appointment" ? "active" : ""}}' bindtap='switchNav' data-nav='appointment'>
+      <view class='nav-icon'>
+        <text>📅</text>
+      </view>
+      <text class='nav-text'>预约管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "order" ? "active" : ""}}' bindtap='switchNav' data-nav='order'>
+      <view class='nav-icon'>
+        <text>📋</text>
+      </view>
+      <text class='nav-text'>订单管理</text>
+    </view>
+    <view class='nav-item {{activeNav === "user" ? "active" : ""}}' bindtap='switchNav' data-nav='user'>
+      <view class='nav-icon'>
+        <text>👤</text>
+      </view>
+      <text class='nav-text'>顾客管理</text>
+    </view>
+  </view>
+
+  <!-- 顶部添加按钮 -->
+  <view class='header card'>
+    <button class='add-btn btn-primary' type='primary' bindtap='navigateToAdd'>添加商品</button>
+    <button class='add-btn category-btn btn-secondary' type='default' bindtap='navigateToCategoryList'>分类管理</button>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class='search-bar card'>
+    <input type='text' placeholder='搜索商品名称' bindinput='onSearchInput' value='{{searchKeyword}}' />
+    <button class='search-btn btn-primary' bindtap='onSearch'>搜索</button>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class='product-list'>
+    <block wx:for='{{products}}' wx:key='_id'>
+      <view class='product-item card card-interactive'>
+        <image class='product-image' src='{{item.images[0] || ""}}' mode='aspectFill'></image>
+        <view class='product-info'>
+          <text class='product-name'>{{item.name}}</text>
+          <text class='product-price'>¥{{item.price}}</text>
+          <text class='product-stock' wx:if='{{item.stock > 0}}'>库存: {{item.stock}}</text>
+          <text class='product-stock-out' wx:else>库存不足</text>
+          <text class='product-date'>创建时间: {{item.formattedCreatedAt}}</text>
+        </view>
+        <view class='product-actions'>
+          <button class='view-btn btn-secondary' bindtap='navigateToDetailProduct' data-id='{{item._id}}'>查看详情</button>
+          <button class='edit-btn btn-primary' bindtap='navigateToEditProduct' data-id='{{item._id}}'>编辑</button>
+          <button class='status-btn btn-primary' bindtap='onToggleStatus' data-id='{{item._id}}' data-status='{{item.status}}'>
+            {{item.status ? "下架" : "上架"}}
+          </button>
+          <button class='delete-btn btn-danger' type='warn' bindtap='onDeleteProduct' data-id='{{item._id}}'>删除</button>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view class='empty-state' wx:if='{{products.length === 0}}'>
+    <text>暂无商品数据</text>
+    <text class='empty-hint'>点击右上角"添加商品"按钮开始添加商品</text>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class='load-more' wx:if='{{hasMore}}' bindtap='loadMore'>
+    <text>加载更多</text>
+  </view>
+</view>

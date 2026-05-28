@@ -1,0 +1,507 @@
+/* 页面基础样式 */
+.container {
+  padding: 30rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 表单卡片 */
+.form-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 40rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+/* 表单项 */
+.form-item {
+  margin-bottom: 40rpx;
+}
+
+.label {
+  display: block;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.label.required::after {
+  content: " *";
+  color: #ff4d4f;
+}
+
+/* 输入框样式 */
+.input, .textarea {
+  width: 100%;
+  padding: 24rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.textarea {
+  min-height: 120rpx;
+  resize: none;
+}
+
+.input:focus, .textarea:focus {
+  border-color: #3a7bd5;
+  background: white;
+  outline: none;
+}
+
+.placeholder {
+  color: #999;
+  font-size: 30rpx;
+}
+
+/* 时长输入组 */
+.duration-input-group {
+  display: flex;
+  align-items: center;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.duration-input-group:focus-within {
+  border-color: #3a7bd5;
+  background: white;
+}
+
+.duration-input {
+  flex: 1;
+  padding: 24rpx 20rpx;
+  border: none;
+  background: transparent;
+  font-size: 30rpx;
+}
+
+.duration-input:focus {
+  outline: none;
+}
+
+.duration-unit {
+  color: #666;
+  font-size: 30rpx;
+  padding: 0 20rpx;
+  margin-right: 20rpx;
+}
+
+/* 价格输入组 */
+.price-input-group {
+  display: flex;
+  align-items: center;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  background: #fafafa;
+  padding-left: 20rpx;
+  transition: all 0.3s ease;
+}
+
+.price-input-group:focus-within {
+  border-color: #3a7bd5;
+  background: white;
+}
+
+.currency {
+  color: #666;
+  font-size: 30rpx;
+  margin-right: 10rpx;
+}
+
+.price-input {
+  flex: 1;
+  padding: 24rpx 20rpx;
+  border: none;
+  background: transparent;
+  font-size: 30rpx;
+}
+
+.price-input:focus {
+  outline: none;
+}
+
+/* 字符计数 */
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+/* 图片上传区域 */
+.image-upload-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-bottom: 16rpx;
+}
+
+.image-item {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.upload-btn {
+  width: 200rpx;
+  height: 200rpx;
+  border: 2rpx dashed #d9d9d9;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:active {
+  background: #f5f5f5;
+}
+
+.upload-icon {
+  font-size: 48rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.upload-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.tip-text, .help-text {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+/* 预约时间设置样式 */
+.sub-label {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+  font-weight: 400;
+}
+
+.time-setting-item {
+  margin-bottom: 32rpx;
+  padding-bottom: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.time-setting-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* 基础时间粒度 */
+.time-granularity-input {
+  display: flex;
+  align-items: center;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.time-granularity-input:focus-within {
+  border-color: #3a7bd5;
+  background: white;
+}
+
+/* 每日营业时间 */
+.daily-time-picker {
+  display: flex;
+  gap: 20rpx;
+  flex-wrap: wrap;
+}
+
+.time-picker {
+  flex: 1;
+  min-width: 300rpx;
+  padding: 24rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.time-picker:focus-within {
+  border-color: #3a7bd5;
+  background: white;
+}
+
+.picker {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 每周营业日 */
+.week-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.week-day-item {
+  display: inline-flex; /* 改为inline-flex确保能在一行显示 */
+  align-items: center;
+  padding: 12rpx 24rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 20rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  font-size: 26rpx;
+  color: #666;
+  cursor: pointer;
+  user-select: none;
+  margin: 8rpx;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.week-day-item:active {
+  border-color: #3a7bd5;
+  background: #e6f2ff;
+}
+
+/* 自定义checkbox样式 */
+.custom-checkbox {
+  margin-right: 8rpx;
+  transform: scale(1.1); /* 放大checkbox以便更清晰地显示 */
+  accent-color: #3a7bd5; /* 设置勾选颜色 */
+}
+
+/* 选中状态样式 */
+.week-day-item.checked {
+  border-color: #3a7bd5;
+  background: #e6f2ff;
+  color: #3a7bd5;
+}
+
+.week-day-text {
+  font-size: 26rpx;
+  font-weight: 400;
+}
+
+/* 每时段容量 */
+.capacity-input {
+  display: flex;
+  align-items: center;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.capacity-input:focus-within {
+  border-color: #3a7bd5;
+  background: white;
+}
+
+/* 特殊日期设置 */
+.special-date-btn {
+  margin-bottom: 20rpx;
+  background: linear-gradient(135deg, #52c41a 0%, #95de64 100%) !important;
+  border: none !important;
+  border-radius: 8rpx !important;
+}
+
+.special-date-list {
+  margin-top: 16rpx;
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+
+.special-date-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background: #fafafa;
+  border-radius: 12rpx;
+  margin-bottom: 12rpx;
+  font-size: 28rpx;
+}
+
+.time-slot-info {
+  color: #333;
+  flex: 1;
+  word-break: break-word;
+}
+
+.delete-special-date {
+  color: #ff4d4f;
+  font-size: 36rpx;
+  margin-left: 20rpx;
+  line-height: 1;
+}
+
+/* 模态框样式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24rpx;
+  width: 85%;
+  max-width: 600rpx;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 40rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.modal-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.close-btn {
+  font-size: 48rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 40rpx;
+}
+
+.special-time-picker-group {
+  display: flex;
+  gap: 20rpx;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.all-day-option {
+  margin: 20rpx 0;
+  padding: 16rpx;
+  background: #fafafa;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 20rpx;
+  padding: 32rpx 40rpx;
+  border-top: 2rpx solid #f0f0f0;
+}
+
+.modal-btn {
+  flex: 1;
+  height: 80rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%) !important;
+  border: none !important;
+}
+
+.cancel-btn {
+  background: #f5f5f5 !important;
+  border: 2rpx solid #e0e0e0 !important;
+  color: #666 !important;
+}
+
+/* 提交按钮区域 */
+.submit-section {
+  padding: 40rpx 0;
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+  color: white;
+  border: none;
+  border-radius: 16rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  height: 100rpx;
+  line-height: 100rpx;
+  box-shadow: 0 15rpx 30rpx rgba(58, 123, 213, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-submit:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 10rpx 20rpx rgba(58, 123, 213, 0.2);
+}
+
+.btn-submit[disabled] {
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
