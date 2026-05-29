@@ -255,4 +255,4 @@ git rm --cached <file>
 
 ## 开源许可
 
-MIT License © 2024 王嘉卫
+MIT License © 2024-present 王嘉卫 (Jiawei Wang)
